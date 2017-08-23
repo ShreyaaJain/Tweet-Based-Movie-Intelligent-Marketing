@@ -32,12 +32,7 @@ ui<-fluidPage(
     tabPanel("Histogram of Sentiment Scores", plotOutput("histogramscores"),width=10),
     tabPanel("Boxplot of Sentiment Scores", plotOutput("boxplotscores"),width=10)
   )  
-  
-  
   )
-  
-  
-  
 )
 
 server<-function(input, output)
@@ -224,9 +219,7 @@ server<-function(input, output)
   # sort data frame
   sent_df = within(sent_df,emotion <- factor(emotion, levels=names(sort(table(emotion), decreasing=TRUE))))
   #write.csv(sent_df,file="sent_df.csv")
-  
-  
-  
+
   # plot distribution of polarity
   ggplot(sent_df, aes(x=polarity)) +
     geom_bar(aes(y=..count.., fill=polarity)) +
@@ -506,8 +499,5 @@ server<-function(input, output)
     boxplot(score~movie, data=scores) #making a boxplot of sentiments
   })
 }
-
-
-
 
 shinyApp(ui=ui, server=server)
